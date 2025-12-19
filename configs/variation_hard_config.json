@@ -14,7 +14,7 @@
         }
     ],
     "load_location": [2, 2],
-    "load_force_y": -50.0,
-    "weight_penalty": 0.5,
-    "stiffness_penalty": 0.1
+    "load_force_y": -100.0,
+    "weight_penalty": 1.0,
+    "stiffness_penalty": 5.0
 }

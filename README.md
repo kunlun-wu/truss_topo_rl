@@ -177,6 +177,63 @@ For the score distribution, we can see the agent predicted model is close to top
 #### 4.3 discovering arch structure ```variation_hard_config.json```
 This config features a 3x5 grid with fixed supports at the bottom corners and the load at the top center, with rolling supports on the top corners to allow for thermal expansion, mimicking a full arched bridge. I trained using this config hoping for the agent to discover the arch shape to efficiently transfer loads to the supports.
 
+Learning Curve:
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/plot_learning_curve.png">
+    </a>
+</p>
+
+Best Model Structure:
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/result_best.png">
+    </a>
+</p>
+
+Final Model Structure:
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/result_final.png">
+    </a>
+</p>
+
+The best model structure and the final model structure are very different, and the best model structure is the original grid with no bars removed. This indicates 1. that the agent has not fully converged after the 2000 episodes of training duration I set, and 2. that the penalty weight for displacement compared to the penalty weight for material cost is too high, causing the agent to focus on stability over material efficiency.
+
+However, in the snapshots, we can see that the agent is capable of learning arch-like structures with triangulation and symmetry. Given more time and better penalty weights/hyperparameter tuning, the model would likely converge to an efficient arch structure.
+
+Snapshots:
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/snapshots/snapshot3.png">
+    </a>
+</p>
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/snapshots/snapshot4.png">
+    </a>
+</p>
+
+Evaluations:
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/eval_1_score_dist.png">
+    </a>
+</p>
+
+For the score distribution, we can see the agent predicted model is scoring on the lower end of the valid structures from random search. The reason is as discussed above.
+
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/eval_2_success_rate.png">
+    </a>
+</p>
+<p align="center">
+    <a href="https://github.com/kunlun-wu/truss_topo_rl">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/eval_3_design_space.png">
+    </a>
+</p>
+
 #### 4.4 stress testing larger grid ```stressTest_config.json```
 This config is a stress test to evaluate the scalability of the RL approach. It features a larger 3x7 grid with the same boundary conditions of the first default config. The increased grid size significantly expands the design space, challenging the agent to find efficient structures within a more complex environment.
 
