@@ -1,0 +1,20 @@
+{
+    "grid_width": 5,
+    "grid_height": 3,
+    "max_connection_dist": 1.5,
+    "fixed_supports": [[0, 0], [4, 0]],
+    "rolling_supports": [
+        {
+            "location": [0, 2],
+            "direction": 2
+        },
+        {
+            "location": [4, 2],
+            "direction": 2
+        }
+    ],
+    "load_location": [2, 2],
+    "load_force_y": -50.0,
+    "weight_penalty": 0.5,
+    "stiffness_penalty": 0.1
+}
