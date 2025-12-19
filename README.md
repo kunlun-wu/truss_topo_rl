@@ -7,7 +7,7 @@ Truss topology optimization involves determining the optimal arrangement of trus
 
 I hope for this agent to navigate the combinational landscape of discrete search space (binary add/remove members, for a grid with N possible connections, the search space is 2^N) and discontinuous reward function (small changes in topology can lead to large changes in performance), and ultimately discover efficient structural forms, such as triangulation or arches, without being explicitly programmed with engineering rules.
 
-(Like the Cook's Membrane project, I also encountered many challenges in this project. I still carry the PTSD from the volumetric locking I experienced there. I realized the distinct difficulty of a priori machine learning compared to the more traditional posteriori supervised learning. Despite the challenges, I am still really interested in the a priori approach, so I did this project to further explore it.)
+(Like the Cook's Membrane project, I also encountered many challenges in this project. I still carry the PTSD from the volumetric locking I experienced there. I realized the distinct difficulty of a priori machine learning compared to the more traditional posteriori supervised learning (what I learned before taking this course). Despite the challenges, I am still really interested in the a priori approach, so I did this project to further explore it.)
 
 ## 2. Stack and Design
 #### Physics Engine: ```anastruct```
@@ -198,21 +198,15 @@ Final Model Structure:
     </a>
 </p>
 
-The best model structure and the final model structure are very different, and the best model structure is the original grid with no bars removed. This indicates 1. that the agent has not fully converged after the 2000 episodes of training duration I set, and 2. that the penalty weight for displacement compared to the penalty weight for material cost is too high, causing the agent to focus on stability over material efficiency.
+The best model structure and the final model structure similar but different. This indicates that the agent has not fully converged after the 2000 episodes of training. There are some traits of an arch structure, but the model has not fully optimized yet.
 
-However, in the snapshots, we can see that the agent is capable of learning arch-like structures with triangulation and symmetry. Given more time and better penalty weights/hyperparameter tuning, the model would likely converge to an efficient arch structure.
+In snapshot 13 (highest scoring snapshot), we can see that the agent is capable of learning arch-like structures with triangulation and symmetry. Given more time and better penalty weights/hyperparameter tuning, the model would likely converge to a more efficient arch structure.
 
-Snapshots:
+Snapshot 13:
 <p align="center">
     <a href="https://github.com/kunlun-wu/truss_topo_rl">
-        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/snapshots/snapshot3.png">
+        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/snapshots/snapshot13.png">
     </a>
-</p>
-<p align="center">
-    <a href="https://github.com/kunlun-wu/truss_topo_rl">
-        <img src="https://raw.githubusercontent.com/kunlun-wu/truss_topo_rl/main/results/variation_hard_results/snapshots/snapshot4.png">
-    </a>
-</p>
 
 Evaluations:
 <p align="center">
@@ -221,7 +215,7 @@ Evaluations:
     </a>
 </p>
 
-For the score distribution, we can see the agent predicted model is scoring on the lower end of the valid structures from random search. The reason is as discussed above.
+For the score distribution, we can see the agent predicted model is scoring on the top end of the valid structures from random search.
 
 <p align="center">
     <a href="https://github.com/kunlun-wu/truss_topo_rl">
